@@ -1,0 +1,25 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test-unit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@2
+
+      - name: Set Node.js version
+        uses: actions/setup-node
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: yarn install --check-files
+
+      - name: Run test unit
+        run: yarn run test:unit
